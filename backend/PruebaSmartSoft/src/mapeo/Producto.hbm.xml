@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/01/2021 05:03:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="model.Producto" optimistic-lock="version" schema="SYSTEM" table="PRODUCTO">
+    <id name="idProducto" type="long">
+      <column name="ID_PRODUCTO" precision="11" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="56" name="NOMBRE" not-null="true"/>
+    </property>
+    <property name="precio" type="big_decimal">
+      <column name="PRECIO" not-null="true" precision="11" scale="6"/>
+    </property>
+    <property name="stock" type="long">
+      <column name="STOCK" not-null="true" precision="10" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="detalles" table="DETALLE">
+      <key>
+        <column name="ID_PRODUCTO" not-null="true" precision="11" scale="0"/>
+      </key>
+      <one-to-many class="model.Detalle"/>
+    </set>
+  </class>
+</hibernate-mapping>

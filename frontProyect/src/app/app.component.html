@@ -1,0 +1,51 @@
+<div class="d-flex flex-fill btn-danger p-3 m-0 mb-3 justify-content-center align-items-center flex-column">
+  <h1>Prueba SmartSoft</h1>
+  <small>Facturas</small>
+  <div class="d-flex flex-row">
+  </div>
+</div>
+
+<div class="row m-0 p-2">
+  <!--  FACTURA  -->
+  <div class="card col-12 m-0 my-2">
+    <div class="card-body">
+      <h5 class="card-title text-center">FACTURA</h5>
+          <form [formGroup]="paradaForm" (ngSubmit)="onSubmit()">
+            <div class="modal-body">
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label>Numero factura</label>
+                  <input type="number" formControlName="numero_factura" class="form-control"
+                         [ngClass]="{ 'is-invalid': submitted  }" required/>
+                </div>
+                <div class="form-group col-6">
+                  <label>Cliente</label>
+                  <select id="select_estaicon" formControlName="id_estacion"   class="form-control" required
+                          [ngClass]="{ 'is-invalid': submitted }">
+                    <option *ngFor="let cliente of clientes"
+                            value="{{cliente.id_cliente}}">{{cliente.nombre + '  '+cliente.apellido}}</option>
+                  </select>
+                  <div *ngIf="submitted" class="invalid-feedback">
+                    <div *ngIf="submitted">Datos requeridos</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label>Fecha</label>
+                  <input type="text" formControlName="fecha" class="form-control"
+                         [ngClass]="{ 'is-invalid': submitted  }" required/>
+                </div>
+                <div class="form-group col-6">
+
+                </div>
+              </div>
+            </div>
+          </form>
+
+      <div class="d-flex flex-fill justify-content-between">
+        <button class="btn btn-info">Agregar  Factura</button>
+      </div>
+    </div>
+  </div>
+</div>

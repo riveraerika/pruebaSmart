@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/01/2021 05:03:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="model.Cliente" optimistic-lock="version" schema="SYSTEM" table="CLIENTE">
+    <id name="idCliente" type="long">
+      <column name="ID_CLIENTE" precision="11" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="56" name="NOMBRE" not-null="true"/>
+    </property>
+    <property name="apellido" type="string">
+      <column length="56" name="APELLIDO" not-null="true"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="56" name="DIRECCION" not-null="true"/>
+    </property>
+    <property name="fechaNacimiento" type="string">
+      <column length="56" name="FECHA_NACIMIENTO" not-null="true"/>
+    </property>
+    <property name="telefono" type="string">
+      <column length="56" name="TELEFONO" not-null="true"/>
+    </property>
+    <property name="email" type="string">
+      <column length="56" name="EMAIL" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="facturas" table="FACTURA">
+      <key>
+        <column name="ID_CLIENTE" not-null="true" precision="11" scale="0"/>
+      </key>
+      <one-to-many class="model.Factura"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/01/2021 05:03:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="model.Factura" optimistic-lock="version" schema="SYSTEM" table="FACTURA">
+    <id name="numFactura" type="long">
+      <column name="NUM_FACTURA" precision="11" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="model.Cliente" fetch="select" name="cliente">
+      <column name="ID_CLIENTE" not-null="true" precision="11" scale="0"/>
+    </many-to-one>
+    <property name="fecha" type="date">
+      <column length="7" name="FECHA" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="detalles" table="DETALLE">
+      <key>
+        <column name="ID_FACTURA" not-null="true" precision="11" scale="0"/>
+      </key>
+      <one-to-many class="model.Detalle"/>
+    </set>
+  </class>
+</hibernate-mapping>
